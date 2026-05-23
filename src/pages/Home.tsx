@@ -61,7 +61,7 @@ export default function Home() {
           <div className="mt-2">
             <div className="flex items-center gap-1.5">
               <h2 className="text-xl font-extrabold">{AI_USER.name}</h2>
-              <VerifiedBadge size="lg" />
+              <VerifiedBadge size="lg" username={AI_USER.username} />
             </div>
             <p className="text-sm text-muted-foreground">@{AI_USER.username}</p>
           </div>
