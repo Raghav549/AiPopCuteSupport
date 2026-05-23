@@ -7,6 +7,7 @@ import { useSocialStore } from '@/stores/socialStore';
 import AppLayout from '@/components/layout/AppLayout';
 import { PostSkeleton } from '@/components/features/SkeletonLoader';
 import ToastContainer from '@/components/features/ToastContainer';
+import { CreatorRoute, ProtectedRoute } from '@/components/layout/RouteGuards';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -21,13 +22,11 @@ const Settings = lazy(() => import('@/pages/Settings'));
 const CreatorDashboard = lazy(() => import('@/pages/CreatorDashboard'));
 const PostDetail = lazy(() => import('@/pages/PostDetail'));
 const UserProfile = lazy(() => import('@/pages/UserProfile'));
+const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
+const SettingsSection = lazy(() => import('@/pages/SettingsSection'));
 
 function LoadingFallback() {
-  return (
-    <div className="px-4 py-4 space-y-4">
-      <PostSkeleton />
-    </div>
-  );
+  return <div className="px-4 py-4 space-y-4"><PostSkeleton /></div>;
 }
 
 export default function App() {
@@ -49,17 +48,25 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<PlaceholderPage />} />
+          <Route path="/reset-password" element={<PlaceholderPage />} />
           <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/ai" element={<AiProfile />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/studio" element={<Studio />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/creator" element={<CreatorDashboard />} />
+            <Route path="/ai/support" element={<AiProfile />} />
+            <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
+            <Route path="/studio" element={<ProtectedRoute><Studio /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+            <Route path="/messages/:conversationId" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+            <Route path="/groups/create" element={<ProtectedRoute><PlaceholderPage /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/profile/edit" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+            <Route path="/settings/:section" element={<ProtectedRoute><SettingsSection /></ProtectedRoute>} />
+            <Route path="/creator" element={<CreatorRoute><CreatorDashboard /></CreatorRoute>} />
+            <Route path="/creator/:section" element={<CreatorRoute><PlaceholderPage /></CreatorRoute>} />
             <Route path="/post/:id" element={<PostDetail />} />
             <Route path="/u/:username" element={<UserProfile />} />
           </Route>

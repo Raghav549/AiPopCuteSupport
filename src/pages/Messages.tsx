@@ -50,7 +50,7 @@ export default function Messages() {
                 </div>
                 <p className="text-xs text-muted-foreground truncate">@{user.username}</p>
               </div>
-              <button className="gradient-yellow text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+              <button onClick={() => navigate(`/messages/${user.id}`)} className="gradient-yellow text-white text-xs font-semibold px-3 py-1.5 rounded-full">
                 Chat
               </button>
             </div>

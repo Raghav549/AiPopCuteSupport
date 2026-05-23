@@ -33,8 +33,8 @@ export default function CreatorDashboard() {
   const actions = [
     { label: 'Edit Profile', onClick: () => navigate('/settings') },
     { label: 'Create Post', onClick: () => navigate('/studio') },
-    { label: 'View Analytics', onClick: () => {} },
-    { label: 'Manage Comments', onClick: () => {} },
+    { label: 'View Analytics', onClick: () => navigate('/creator/analytics') },
+    { label: 'Manage Comments', onClick: () => navigate('/creator/comments') },
   ];
 
   return (
