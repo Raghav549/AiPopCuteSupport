@@ -23,6 +23,7 @@ const CreatorDashboard = lazy(() => import('@/pages/CreatorDashboard'));
 const PostDetail = lazy(() => import('@/pages/PostDetail'));
 const UserProfile = lazy(() => import('@/pages/UserProfile'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
+const SettingsSection = lazy(() => import('@/pages/SettingsSection'));
 
 function LoadingFallback() {
   return <div className="px-4 py-4 space-y-4"><PostSkeleton /></div>;
@@ -63,7 +64,7 @@ export default function App() {
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/profile/edit" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-            <Route path="/settings/:section" element={<ProtectedRoute><PlaceholderPage /></ProtectedRoute>} />
+            <Route path="/settings/:section" element={<ProtectedRoute><SettingsSection /></ProtectedRoute>} />
             <Route path="/creator" element={<CreatorRoute><CreatorDashboard /></CreatorRoute>} />
             <Route path="/creator/:section" element={<CreatorRoute><PlaceholderPage /></CreatorRoute>} />
             <Route path="/post/:id" element={<PostDetail />} />
