@@ -9,6 +9,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import { PostSkeleton } from '@/components/features/SkeletonLoader';
 import ToastContainer from '@/components/features/ToastContainer';
 import { CreatorRoute, ProtectedRoute } from '@/components/layout/RouteGuards';
+import NotFound from '@/pages/NotFound';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -25,11 +26,6 @@ const PostDetail = lazy(() => import('@/pages/PostDetail'));
 const UserProfile = lazy(() => import('@/pages/UserProfile'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
 const SettingsSection = lazy(() => import('@/pages/SettingsSection'));
-const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
-const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
-const GroupCreate = lazy(() => import('@/pages/GroupCreate'));
-const CreatorSection = lazy(() => import('@/pages/CreatorSection'));
-
 
 function LoadingFallback() {
   return <div className="px-4 py-4 space-y-4"><PostSkeleton /></div>;
@@ -56,8 +52,8 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/forgot-password" element={<PlaceholderPage />} />
+          <Route path="/reset-password" element={<PlaceholderPage />} />
           <Route element={<AppLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -68,17 +64,17 @@ export default function App() {
             <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
             <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
             <Route path="/messages/:conversationId" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
-            <Route path="/groups/create" element={<ProtectedRoute><GroupCreate /></ProtectedRoute>} />
+            <Route path="/groups/create" element={<ProtectedRoute><PlaceholderPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/profile/edit" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/settings/:section" element={<ProtectedRoute><SettingsSection /></ProtectedRoute>} />
             <Route path="/creator" element={<CreatorRoute><CreatorDashboard /></CreatorRoute>} />
-            <Route path="/creator/:section" element={<CreatorRoute><CreatorSection /></CreatorRoute>} />
+            <Route path="/creator/:section" element={<CreatorRoute><PlaceholderPage /></CreatorRoute>} />
             <Route path="/post/:id" element={<PostDetail />} />
             <Route path="/u/:username" element={<UserProfile />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <ToastContainer />
