@@ -46,7 +46,7 @@ export default function Messages() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1">
                   <span className="font-semibold text-sm">{user.name}</span>
-                  {user.verified && <VerifiedBadge size="sm" username={author.username} />}
+                  {user.verified && <VerifiedBadge size="sm" username={user.username} />}
                 </div>
                 <p className="text-xs text-muted-foreground truncate">@{user.username}</p>
               </div>

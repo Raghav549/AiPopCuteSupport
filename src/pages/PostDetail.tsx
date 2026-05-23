@@ -143,7 +143,7 @@ export default function PostDetail() {
                   <div className="flex-1 bg-muted/50 rounded-xl px-3 py-2">
                     <div className="flex items-center gap-1">
                       <span className="text-xs font-bold">{commenter?.name}</span>
-                      {commenter?.verified && <VerifiedBadge size="sm" username={author.username} />}
+                      {commenter?.verified && <VerifiedBadge size="sm" username={commenter.username} />}
                     </div>
                     <p className="text-sm mt-0.5">{comment.content}</p>
                     <span className="text-[10px] text-muted-foreground">{formatDate(comment.createdAt)}</span>
