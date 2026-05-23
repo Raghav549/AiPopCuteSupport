@@ -46,11 +46,11 @@ export default function Messages() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1">
                   <span className="font-semibold text-sm">{user.name}</span>
-                  {user.verified && <VerifiedBadge size="sm" />}
+                  {user.verified && <VerifiedBadge size="sm" username={author.username} />}
                 </div>
                 <p className="text-xs text-muted-foreground truncate">@{user.username}</p>
               </div>
-              <button className="gradient-yellow text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+              <button onClick={() => navigate(`/messages/${user.id}`)} className="gradient-yellow text-white text-xs font-semibold px-3 py-1.5 rounded-full">
                 Chat
               </button>
             </div>
