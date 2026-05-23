@@ -9,6 +9,7 @@ import AppLayout from '@/components/layout/AppLayout';
 import { PostSkeleton } from '@/components/features/SkeletonLoader';
 import ToastContainer from '@/components/features/ToastContainer';
 import { CreatorRoute, ProtectedRoute } from '@/components/layout/RouteGuards';
+import NotFound from '@/pages/NotFound';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -73,7 +74,7 @@ export default function App() {
             <Route path="/post/:id" element={<PostDetail />} />
             <Route path="/u/:username" element={<UserProfile />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <ToastContainer />
