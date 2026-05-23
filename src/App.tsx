@@ -4,6 +4,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useVoteStore } from '@/stores/voteStore';
 import { usePostStore } from '@/stores/postStore';
 import { useSocialStore } from '@/stores/socialStore';
+import { useSettingsStore } from '@/stores/settingsStore';
 import AppLayout from '@/components/layout/AppLayout';
 import { PostSkeleton } from '@/components/features/SkeletonLoader';
 import ToastContainer from '@/components/features/ToastContainer';
@@ -34,13 +35,15 @@ export default function App() {
   const initVotes = useVoteStore(s => s.initialize);
   const initPosts = usePostStore(s => s.initialize);
   const initSocial = useSocialStore(s => s.initialize);
+  const initSettings = useSettingsStore(s => s.init);
 
   useEffect(() => {
     initAuth();
     initVotes();
     initPosts();
     initSocial();
-  }, [initAuth, initVotes, initPosts, initSocial]);
+    initSettings();
+  }, [initAuth, initVotes, initPosts, initSocial, initSettings]);
 
   return (
     <BrowserRouter>

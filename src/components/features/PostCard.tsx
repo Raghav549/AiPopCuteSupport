@@ -68,7 +68,7 @@ export default function PostCard({ post }: PostCardProps) {
           <div className="text-left">
             <div className="flex items-center gap-1">
               <span className="font-bold text-sm">{author.name}</span>
-              {author.verified && <VerifiedBadge size="sm" />}
+              {author.verified && <VerifiedBadge size="sm" username={author.username} />}
             </div>
             <span className="text-xs text-muted-foreground">
               {formatDate(post.createdAt)}
